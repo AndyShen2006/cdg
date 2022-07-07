@@ -3,7 +3,7 @@
 #include <string>
 #ifndef _EXT_RANDOM_H
 #define _EXT_RANDOM_H
-
+using namespace cdg;
 // Initalize
 std::random_device rand_dev; // NOLINT
 std::mt19937_64 rand_eng(rand_dev()); // NOLINT

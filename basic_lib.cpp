@@ -1,12 +1,18 @@
 #include "basic_lib.h"
 
+using namespace cdg;
 // Construct functions
+Rules::Rules(const Rules& r)
+{
+    rules = r.rules;
+}
+
 Rules::Rules(const std::string& r)
 {
     std::string tempstr;
     for (auto it : r) {
         if (it == ' ') {
-            rules.push_back(tempstr);
+            rules.emplace_back(tempstr);
             tempstr.clear();
             continue;
         } else {
@@ -15,7 +21,7 @@ Rules::Rules(const std::string& r)
     }
     // Push last string
     if (!tempstr.empty()) {
-        rules.push_back(tempstr);
+        rules.emplace_back(tempstr);
         tempstr.clear();
     }
 }
@@ -57,14 +63,28 @@ std::vector<std::string> Rules::operator+(const Rules& rhs)
 {
     std::vector<std::string> temp;
     for (const auto& it : this->rules) {
-        temp.push_back(it);
+        temp.emplace_back(it);
     }
     for (const auto& it : rhs.rules) {
-        temp.push_back(it);
+        temp.emplace_back(it);
     }
     return temp;
 }
 
+// Generate functions
+void Rules::generate(const Rules& r)
+{
+    Rules temp(r);
+    rules = temp.rules;
+}
+
+void Rules::generate(const std::string& r)
+{
+    Rules temp(r);
+    rules = temp.rules;
+}
+
+// Make functions
 Rules make_rules(const std::string& r)
 {
     Rules tempRule(r);

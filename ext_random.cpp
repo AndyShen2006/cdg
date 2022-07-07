@@ -103,7 +103,7 @@ char randchar(const Rules& rules)
     } else if (current_rule == "Symbol") {
         return randsymbol();
     } else {
-        throw std::invalid_argument("Cannot find find rule:" + current_rule);
+        throw std::invalid_argument("Invalid rule:" + current_rule);
     }
 }
 // A Syntax candy

@@ -19,6 +19,8 @@ else(${CMAKE_BUILD_TYPE} STREQUAL RELEASE)
     message("Optional:-fno-asm -std=c++11 -Wall -stdlib=libstdc++ -O2, Type:Release")
 endif(${CMAKE_BUILD_TYPE} STREQUAL DEBUG)
 
+add_subdirectory(Graph/)
+
 add_library(ext_random SHARED ext_random.cpp basic_lib.cpp)
 add_library(basic_lib SHARED basic_lib.cpp ext_random.cpp)
 
