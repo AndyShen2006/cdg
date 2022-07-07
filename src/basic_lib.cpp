@@ -1,4 +1,4 @@
-#include "basic_lib.h"
+#include "../include/basic_lib.h"
 
 using namespace cdg;
 // Construct functions

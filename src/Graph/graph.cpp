@@ -1,4 +1,4 @@
-#include "graph.h"
+#include "../../include/Graph/graph.h"
 
 using namespace cdg;
 
@@ -109,7 +109,7 @@ Graph::Graph(const std::map<int, std::map<int, long long>>& g)
     }
 }
 
-// Not finished
+// Not finished(No countNode)
 Graph::Graph(const Edge*& edges)
 {
     int size = static_cast<int>(sizeof(&edges));
@@ -133,52 +133,6 @@ void Graph::generate(const Graph& g)
     countNode = g.countNode;
     G = g.G;
 }
-void Graph::generate(const std::vector<int>*& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::vector<std::vector<int>>& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::vector<std::pair<int, int>>*& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::vector<std::vector<std::pair<int, int>>>& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::map<int, std::set<int>>& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::map<int, std::map<int, int>>& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const std::map<int, std::map<int, long long>>& g)
-{
-    Graph tempG(g);
-    generate(tempG);
-}
-void Graph::generate(const Edge*& edges)
-{
-    Graph tempG(edges);
-    generate(tempG);
-}
-void Graph::generate(const std::vector<Edge>& edges)
-{
-    Graph tempG(edges);
-    generate(tempG);
-}
-
 // Display function
 void Graph::showGraph(Rules rule)
 {
@@ -218,7 +172,10 @@ unsigned Graph::countnode() const
 {
     return countNode;
 }
-
+std::map<int, std::map<int, long long>> Graph::returnG() const
+{
+    return G;
+}
 // Change graph methods
 void Graph::addedge(Edge e)
 {

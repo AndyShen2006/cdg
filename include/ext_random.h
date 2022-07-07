@@ -3,7 +3,7 @@
 #include <string>
 #ifndef _EXT_RANDOM_H
 #define _EXT_RANDOM_H
-using namespace cdg;
+
 // Initalize
 std::random_device rand_dev; // NOLINT
 std::mt19937_64 rand_eng(rand_dev()); // NOLINT
@@ -15,7 +15,7 @@ long long randll(long long start, long long end);
 unsigned long long randull(unsigned long long start, unsigned long long end);
 
 // Rand rule
-std::string randrule(Rules rules);
+std::string randrule(cdg::Rules rules);
 // Generate string, character
 char randdigit();
 char randlower();
@@ -48,8 +48,8 @@ char randsymbol();
             "Upper Symbol" will generate a string including
             upper alphabets and numbers.
 */
-char randchar(const Rules& rules);
+char randchar(const cdg::Rules& rules);
 char randchar(const std::string& rules);
-std::string randstring(const unsigned& length, const Rules& rules);
+std::string randstring(const unsigned& length, const cdg::Rules& rules);
 std::string randstring(const unsigned& length, const std::string& rules);
 #endif

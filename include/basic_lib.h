@@ -32,15 +32,16 @@ private:
 };
 
 // Class Interval（Noting completed）
+template <typename T>
 class Interval {
 public:
-    long long getStart();
-    long long getEnd();
+    T getStart();
+    T getEnd();
     bool getLtype();
     bool getRtype();
 
 private:
-    long long start, end;
+    T start, end;
     bool Ltype; // false->( ; true->[
     bool Rtype; // false->) ; true->]
 };

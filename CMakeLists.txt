@@ -10,6 +10,7 @@ set(CMAKE_CXX_FLAGS "-fno-asm -std=c++11 -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
 # Show message
 message("Environment:Archlinux; GNU C Compiler version 12.1.0")
@@ -19,10 +20,17 @@ else(${CMAKE_BUILD_TYPE} STREQUAL RELEASE)
     message("Optional:-fno-asm -std=c++11 -Wall -stdlib=libstdc++ -O2, Type:Release")
 endif(${CMAKE_BUILD_TYPE} STREQUAL DEBUG)
 
-add_subdirectory(Graph/)
+add_subdirectory(src)
 
-add_library(ext_random SHARED ext_random.cpp basic_lib.cpp)
-add_library(basic_lib SHARED basic_lib.cpp ext_random.cpp)
+# Install options
 
-add_executable(test1 test/test1.cpp)
-target_link_libraries(test1 ext_random basic_lib)
+# Library
+install(TARGETS ext_random basic_lib graph digraph
+        ARCHIVE DESTINATION lib)
+
+# Header files
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+        DESTINATION include)
+
+#add_executable(test1 test/test1.cpp)
+#target_link_libraries(test1 ext_random basic_lib)

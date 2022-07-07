@@ -1,4 +1,4 @@
-#include "ext_random.h"
+#include "../include/ext_random.h"
 
 // Generate random integer in interval [start,end]
 int randint(int start, int end)
@@ -26,7 +26,7 @@ unsigned long long randull(unsigned long long start, unsigned long long end)
 }
 
 // Rand rule
-std::string randrule(Rules rules)
+std::string randrule(cdg::Rules rules)
 {
     unsigned i = randuint(0, rules.size() - 1);
     return rules[i];
@@ -89,7 +89,7 @@ char randsymbol()
             "Upper Symbol" will generate a string including
             upper alphabets and numbers.
 */
-char randchar(const Rules& rules)
+char randchar(const cdg::Rules& rules)
 {
     std::string current_rule = randrule(rules);
     if (current_rule == "Digit") {
@@ -109,10 +109,10 @@ char randchar(const Rules& rules)
 // A Syntax candy
 char randchar(const std::string& rules)
 {
-    Rules r(rules);
+    cdg::Rules r(rules);
     return randchar(r);
 }
-std::string randstring(const unsigned int& length, const Rules& rules)
+std::string randstring(const unsigned int& length, const cdg::Rules& rules)
 {
     std::string temp;
     for (unsigned i = 1; i <= length; i++) {
@@ -123,6 +123,6 @@ std::string randstring(const unsigned int& length, const Rules& rules)
 // A Syntax candy
 std::string randstring(const unsigned int& length, const std::string& rules)
 {
-    Rules r(rules);
+    cdg::Rules r(rules);
     return randstring(length, r);
 }

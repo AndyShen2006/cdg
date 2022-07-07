@@ -41,16 +41,8 @@ public:
     explicit Graph(const std::vector<Edge>& edges);
 
     // Generate functions
-    void generate(const Graph& g);
-    void generate(const std::vector<int>*& g);
-    void generate(const std::vector<std::vector<int>>& g);
-    void generate(const std::vector<std::pair<int, int>>*& g);
-    void generate(const std::vector<std::vector<std::pair<int, int>>>& g);
-    void generate(const std::map<int, std::set<int>>& g);
-    void generate(const std::map<int, std::map<int, int>>& g);
-    void generate(const std::map<int, std::map<int, long long>>& g);
-    virtual void generate(const Edge*& edges);
-    virtual void generate(const std::vector<Edge>& edges);
+    virtual void generate(const Graph& g);
+
     virtual void randgraph(int countV, int countE, Rules rules);
 
     // Display function
@@ -59,6 +51,7 @@ public:
     // Basic informations
     unsigned countedge() const;
     unsigned countnode() const;
+    std::map<int, std::map<int, long long>> returnG() const;
 
     // Change graph methods
     virtual void addedge(Edge e);
@@ -68,6 +61,7 @@ public:
 protected:
     unsigned countEdge = 0, countNode = 0;
     std::map<int, std::map<int, long long>> G;
+    std::vector<Edge> repeatE;
     Rules rules;
 };
 }
