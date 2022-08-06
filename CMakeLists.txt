@@ -25,12 +25,12 @@ add_subdirectory(src)
 # Install options
 
 # Library
-install(TARGETS ext_random basic_lib graph digraph
+install(TARGETS ext_random basic_lib
         ARCHIVE DESTINATION lib)
 
 # Header files
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
         DESTINATION include)
 
-#add_executable(test1 test/test1.cpp)
-#target_link_libraries(test1 ext_random basic_lib)
+add_executable(test1 test/test1.cpp)
+target_link_libraries(test1 ext_random basic_lib digraph graph)

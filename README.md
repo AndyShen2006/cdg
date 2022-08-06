@@ -1,10 +1,9 @@
 # C++ Data Generator
 
-## Instructions:
+An open-source cross-platform data generator 
 
-### English:
+## 说明:
 
-### 简体中文：
 这是一个使用C++编写的随机数据生成库，您可以使用该随机生成库生成图论算法等随机数据。
 
 安装方法：
@@ -28,7 +27,7 @@ cmake ..
 ninja
 sudo ninja install
 ```
-
+编译的时候请使用-L链接上您需要使用的库（比如ext_random就要在编译选项中加上-lext_random）
 
 Copyright (C) 2022  Andy Shen
 

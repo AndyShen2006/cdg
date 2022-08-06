@@ -5,8 +5,8 @@
 #define _EXT_RANDOM_H
 
 // Initalize
-std::random_device rand_dev; // NOLINT
-std::mt19937_64 rand_eng(rand_dev()); // NOLINT
+static std::random_device rand_dev; // NOLINT
+static std::mt19937_64 rand_eng(rand_dev()); // NOLINT
 
 // Generate random valuable in interval [start,end)
 unsigned int randuint(unsigned int start, unsigned int end);

@@ -1,133 +1,163 @@
 #include "../../include/Graph/digraph.h"
 
-using namespace cdg;
-
-Digraph::Digraph(const Digraph& g)
-    : Graph(g)
+cdg::Digraph::Digraph(const int& n)
 {
-    countEdge = g.countEdge;
-    countNode = g.countNode;
-    G = g.G;
+    cntNode = n;
+    for (int i = 0; i <= n; i++) {
+        G.emplace_back(Empty_Vector);
+    }
+    for (int i = 0; i <= n; i++) {
+        mapping.emplace_back(i);
+    }
+    std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
 }
 
-Digraph::Digraph(const Graph& g)
+cdg::Digraph::Digraph(const int& n, const bool& is_shuffle)
 {
+    isShuffle = is_shuffle;
+    cntNode = n;
+    for (int i = 0; i <= n; i++) {
+        G.emplace_back(Empty_Vector);
+    }
+    for (int i = 0; i <= n; i++) {
+        mapping.emplace_back(i);
+    }
+    std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
 }
 
-Digraph::Digraph(const std::vector<int>*& g)
+cdg::Digraph::Digraph(const int& n, const bool& is_shuffle, const int& vf, const int& vt)
 {
-    int size = static_cast<int>(sizeof(&g));
-    countNode = size;
-    for (int i = 0; i < size; i++) {
-        for (const auto& it : g[i]) {
-            G[i].insert(std::make_pair(it, 1));
-            G[it].insert(std::make_pair(i, 1));
-            countEdge++;
+    isShuffle = is_shuffle;
+    hasValue = true;
+    cntNode = n;
+    valfrom = vf;
+    valto = vt;
+    for (int i = 0; i <= n; i++) {
+        G.emplace_back(Empty_Vector);
+    }
+    for (int i = 0; i <= n; i++) {
+        mapping.emplace_back(i);
+    }
+    std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
+}
+void cdg::Digraph::showGraph()
+{
+    std::cout << cntNode << ' ' << cntEdge << std::endl;
+    unsigned len = G.size();
+    if (isShuffle) {
+        if (hasValue) {
+            for (unsigned i = 0; i < len; i++) {
+                for (auto it : G[i]) {
+                    std::cout << mapping[i] << ' ' << mapping[it.first] << ' ' << it.second << std::endl;
+                }
+            }
+        } else {
+            for (unsigned i = 0; i < len; i++) {
+                for (auto it : G[i]) {
+                    std::cout << mapping[i] << ' ' << mapping[it.first] << std::endl;
+                }
+            }
+        }
+    } else {
+        if (hasValue) {
+            for (unsigned i = 0; i < len; i++) {
+                for (auto it : G[i]) {
+                    std::cout << i << ' ' << it.first << ' ' << it.second << std::endl;
+                }
+            }
+        } else {
+            for (unsigned i = 0; i < len; i++) {
+                for (auto it : G[i]) {
+                    std::cout << i << ' ' << it.first << std::endl;
+                }
+            }
         }
     }
 }
 
-Digraph::Digraph(const std::vector<std::vector<int>>& g)
+void cdg::Digraph::emptyGraph()
 {
-    int size = static_cast<int>(g.size());
-    countNode = size;
-    for (int i = 0; i < size; i++) {
-        for (const auto& it : g[i]) {
-            G[i].insert(std::make_pair(it, 1));
-            G[it].insert(std::make_pair(i, 1));
-            countEdge++;
+}
+void cdg::Digraph::completeGraph()
+{
+    for (int i = 1; i < cntNode; i++) {
+        for (int j = i + 1; j <= cntNode; j++) {
+            if (hasValue) {
+                G[i].push_back(std::make_pair(j, randint(valfrom, valto)));
+            } else {
+                G[i].push_back(std::make_pair(j, 1));
+            }
+            cntEdge++;
         }
     }
 }
-Digraph::Digraph(const std::vector<std::pair<int, int>>*& g)
+void cdg::Digraph::tourGraph()
 {
-    int size = static_cast<int>(sizeof(&g));
-    countNode = size;
-    for (int i = 0; i < size; i++) {
-        for (const auto& it : g[i]) {
-            G[i].insert(it);
-            G[it.first].insert(std::make_pair(i, it.second));
-            countNode++;
-        }
-    }
 }
-Digraph::Digraph(const std::vector<std::vector<std::pair<int, int>>>& g)
+void cdg::Digraph::cycleGraph()
 {
-    int size = static_cast<int>(g.size());
-    countNode = size;
-    for (int i = 0; i < size; i++) {
-        for (const auto& it : g[i]) {
-            G[i].insert(it);
-            G[it.first].insert(std::make_pair(i, it.second));
-            countNode++;
-        }
+    for (int i = 1; i < cntNode; i++) {
+        G[i].push_back(std::make_pair(i + 1, randint(valfrom, valto)));
     }
+    G[cntNode].push_back(std::make_pair(1, randint(valfrom, valto)));
+}
+void cdg::Digraph::starGraph()
+{
+}
+void cdg::Digraph::wheelGraph()
+{
+}
+void cdg::Digraph::chainGraph()
+{
+}
+void cdg::Digraph::pseudoGraph()
+{
+}
+void cdg::Digraph::cactusGraph()
+{
+}
+void cdg::Digraph::desertGraph()
+{
+}
+void cdg::Digraph::bipartiteGraph()
+{
+}
+void cdg::Digraph::gridGraph()
+{
 }
 
-Digraph::Digraph(const std::map<int, std::set<int>>& g)
+void cdg::Digraph::randgraph(Rules rules)
 {
-    for (const auto& from : g) {
-        countNode++;
-        for (auto to : from.second) {
-            G[from.first].insert(std::make_pair(to, 1));
-            G[to].insert(std::make_pair(from.first, 1));
-            countEdge++;
-        }
+    if (rules.size() > 1) {
+        throw std::invalid_argument("Too many arguments!");
     }
-}
-
-Digraph::Digraph(const std::map<int, std::map<int, int>>& g)
-{
-    for (const auto& from : g) {
-        countNode++;
-        for (auto to : from.second) {
-            // For program safety
-            auto p = static_cast<std::pair<int, long long>>(to);
-            G[from.first].insert(p);
-            G[p.first].insert(std::make_pair(from.first, p.second));
-            countEdge++;
-        }
+    if (rules[0] == "Complete") {
+        completeGraph();
+    } else if (rules[0] == "Empty") {
+        emptyGraph();
+    } else if (rules[0] == "Tour") {
+        tourGraph();
+    } else if (rules[0] == "Cycle") {
+        cycleGraph();
+    } else if (rules[0] == "Star") {
+        starGraph();
+    } else if (rules[0] == "Wheel") {
+        wheelGraph();
+    } else if (rules[0] == "Chain") {
+        chainGraph();
+    } else if (rules[0] == "Tree") {
+        ;
+    } else if (rules[0] == "Pseudo") {
+        pseudoGraph();
+    } else if (rules[0] == "Cactus") {
+        cactusGraph();
+    } else if (rules[0] == "Desert") {
+        desertGraph();
+    } else if (rules[0] == "Bipartite") {
+        bipartiteGraph();
+    } else if (rules[0] == "Grid") {
+        gridGraph();
+    } else {
+        throw std::invalid_argument("Invalid argument:" + rules[0]);
     }
-}
-
-Digraph::Digraph(const std::map<int, std::map<int, long long>>& g)
-{
-    for (const auto& from : g) {
-        countNode++;
-        for (auto to : from.second) {
-            G[from.first].insert(to);
-            G[to.first].insert(std::make_pair(from.first, to.second));
-            countEdge++;
-        }
-    }
-}
-
-// Not finished(No countNode)
-Digraph::Digraph(const Edge*& edges)
-{
-    int size = static_cast<int>(sizeof(&edges));
-    countEdge = size;
-    for (int i = 0; i < size; i++) {
-        G[edges[i].from].insert(std::make_pair(edges[i].to, edges[i].value));
-    }
-}
-
-Digraph::Digraph(const std::vector<Edge>& edges)
-{
-    for (auto it : edges) {
-        G[it.from].insert(std::make_pair(it.to, it.value));
-    }
-}
-
-// Generate function
-void Digraph::generate(const Digraph& g)
-{
-    countEdge = g.countedge();
-    countNode = g.countnode();
-    G = g.returnG();
-}
-
-void Digraph::generate(const Graph& g)
-{
-    generate(Digraph(g));
 }
