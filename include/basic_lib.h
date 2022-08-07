@@ -29,6 +29,7 @@ public:
 
 private:
     std::vector<std::string> rules;
+    std::vector<int> arguments;
 };
 
 // Class Interval（Noting completed）

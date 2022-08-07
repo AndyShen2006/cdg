@@ -1,0 +1,1 @@
+add_executable(quickmakedata quickmakedata.cpp)

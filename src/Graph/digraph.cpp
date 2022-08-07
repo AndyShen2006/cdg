@@ -98,17 +98,37 @@ void cdg::Digraph::cycleGraph()
 {
     for (int i = 1; i < cntNode; i++) {
         G[i].push_back(std::make_pair(i + 1, randint(valfrom, valto)));
+        cntEdge++;
     }
+    cntEdge++;
     G[cntNode].push_back(std::make_pair(1, randint(valfrom, valto)));
 }
 void cdg::Digraph::starGraph()
 {
+    for (int i = 2; i <= cntNode; i++) {
+        G[1].push_back(std::make_pair(i, randint(valfrom, valto)));
+        cntEdge++;
+    }
 }
 void cdg::Digraph::wheelGraph()
 {
+    for (int i = 2; i <= cntNode; i++) {
+        G[1].push_back(std::make_pair(i, randint(valfrom, valto)));
+        cntEdge++;
+    }
+    for (int i = 2; i < cntNode; i++) {
+        G[i].push_back(std::make_pair(i + 1, randint(valfrom, valto)));
+        cntEdge++;
+    }
+    cntEdge++;
+    G[cntNode].push_back(std::make_pair(2, randint(valfrom, valto)));
 }
 void cdg::Digraph::chainGraph()
 {
+    for (int i = 1; i < cntNode; i++) {
+        G[i].push_back(std::make_pair(i + 1, randint(valfrom, valto)));
+        cntEdge++;
+    }
 }
 void cdg::Digraph::pseudoGraph()
 {
@@ -119,7 +139,7 @@ void cdg::Digraph::cactusGraph()
 void cdg::Digraph::desertGraph()
 {
 }
-void cdg::Digraph::bipartiteGraph()
+void cdg::Digraph::bipartiteCompleteGraph()
 {
 }
 void cdg::Digraph::gridGraph()
@@ -153,8 +173,8 @@ void cdg::Digraph::randgraph(Rules rules)
         cactusGraph();
     } else if (rules[0] == "Desert") {
         desertGraph();
-    } else if (rules[0] == "Bipartite") {
-        bipartiteGraph();
+    } else if (rules[0] == "BipartiteComplete") {
+        bipartiteCompleteGraph();
     } else if (rules[0] == "Grid") {
         gridGraph();
     } else {

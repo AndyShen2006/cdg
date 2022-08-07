@@ -6,7 +6,6 @@
 namespace cdg {
 class Digraph {
 public:
-    Digraph() = default;
     explicit Digraph(const int& n);
     Digraph(const int& n, const bool& is_shuffle);
     Digraph(const int& n, const bool& is_shuffle, const int& vf, const int& vt);
@@ -35,7 +34,7 @@ private:
     void pseudoGraph();
     void cactusGraph();
     void desertGraph();
-    void bipartiteGraph();
+    void bipartiteCompleteGraph();
     void gridGraph();
     // Part 3:generate functions for uncertain edges
     void normalGraph(int V, Rules rules);
