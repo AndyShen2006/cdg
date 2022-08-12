@@ -5,4 +5,4 @@ Update.md
 *.a
 .cache/
 bin/*
-lib/*
+lib/*`

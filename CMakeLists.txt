@@ -25,7 +25,7 @@ add_subdirectory(src)
 # Install options
 
 # Library
-install(TARGETS ext_random basic_lib digraph
+install(TARGETS ext_random basic_lib undigraph
         ARCHIVE DESTINATION lib)
 
 # Header files
@@ -36,5 +36,5 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #        DESTINATION include)
 
-add_executable(test1 test/test1.cpp)
-target_link_libraries(test1 ext_random basic_lib digraph)
+add_executable(test test/test.cpp)
+target_link_libraries(test ext_random basic_lib undigraph)

@@ -4,7 +4,6 @@
 #ifndef _BASIC_LIB_H
 #define _BASIC_LIB_H
 namespace cdg {
-// Class Rule
 class Rules {
 public:
     // Construct functions
@@ -12,8 +11,8 @@ public:
     Rules(const Rules& r);
     explicit Rules(const std::string& r);
     //  Basic informations
-    unsigned int size();
-    unsigned int length();
+    unsigned int size() const;
+    unsigned int length() const;
     // Display function
     void showRules();
     // Part of iterator
@@ -29,7 +28,6 @@ public:
 
 private:
     std::vector<std::string> rules;
-    std::vector<int> arguments;
 };
 
 // Class Interval（Noting completed）

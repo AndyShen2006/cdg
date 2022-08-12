@@ -27,11 +27,11 @@ Rules::Rules(const std::string& r)
 }
 
 // Basic informations
-unsigned int Rules::size()
+unsigned int Rules::size() const
 {
     return rules.size();
 }
-unsigned int Rules::length()
+unsigned int Rules::length() const
 {
     return rules.size();
 }

@@ -8,11 +8,12 @@
 static std::random_device rand_dev; // NOLINT
 static std::mt19937_64 rand_eng(rand_dev()); // NOLINT
 
-// Generate random valuable in interval [start,end)
+// Generate random valuable in interval [start,end]
 unsigned int randuint(unsigned int start, unsigned int end);
 int randint(int start, int end);
 long long randll(long long start, long long end);
 unsigned long long randull(unsigned long long start, unsigned long long end);
+double randdouble(double start, double end);
 
 // Rand rule
 std::string randrule(cdg::Rules rules);

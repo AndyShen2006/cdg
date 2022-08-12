@@ -25,6 +25,12 @@ unsigned long long randull(unsigned long long start, unsigned long long end)
     return u(rand_eng);
 }
 
+double randouble(double start, double end)
+{
+    std::uniform_real_distribution<double> u(start, end);
+    return u(rand_eng);
+}
+
 // Rand rule
 std::string randrule(cdg::Rules rules)
 {
