@@ -1,0 +1,192 @@
+#include "../ext_random.hpp"
+#include "../information.hpp"
+
+#include <algorithm>
+
+#ifndef _UNDIGRAPH_H
+#define _UNDIGRAPH_H
+// Part of declaration
+namespace cdg {
+namespace Graph {
+    template <typename val_type, typename randRule = intRand>
+    class Undigraph {
+    public:
+        typedef val_type valType;
+        randRule Rand;
+        explicit Undigraph(const int& n)
+        {
+            cntNode = n;
+            for (int i = 0; i <= n; i++) {
+                G.emplace_back(Empty_Vector);
+            }
+            for (int i = 0; i <= n; i++) {
+                mapping.emplace_back(i);
+            }
+            std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
+        }
+        Undigraph(const int& n, const bool& is_shuffle)
+        {
+            cntNode = n;
+            isShuffle = is_shuffle;
+            for (int i = 0; i <= n; i++) {
+                G.emplace_back(Empty_Vector);
+            }
+            for (int i = 0; i <= n; i++) {
+                mapping.emplace_back(i);
+            }
+            std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
+        }
+        Undigraph(const int& n, const bool& is_shuffle, const valType& vf, const valType& vt)
+        {
+            hasValue = true;
+            cntNode = n;
+            valFrom = vf;
+            valTo = vt;
+            isShuffle = is_shuffle;
+            for (int i = 0; i <= n; i++) {
+                G.emplace_back(Empty_Vector);
+            }
+            for (int i = 0; i <= n; i++) {
+                mapping.emplace_back(i);
+            }
+            std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
+        }
+        void showGraph()
+        {
+            std::cout << cntNode << ' ' << cntEdge << std::endl;
+            unsigned len = G.size();
+            if (isShuffle) {
+                if (hasValue) {
+                    for (unsigned i = 0; i < len; i++) {
+                        for (auto it : G[i]) {
+                            std::cout << mapping[i] << ' ' << mapping[it.first] << ' ' << it.second << std::endl;
+                        }
+                    }
+                } else {
+                    for (unsigned i = 0; i < len; i++) {
+                        for (auto it : G[i]) {
+                            std::cout << mapping[i] << ' ' << mapping[it.first] << std::endl;
+                        }
+                    }
+                }
+            } else {
+                if (hasValue) {
+                    for (unsigned i = 0; i < len; i++) {
+                        for (auto it : G[i]) {
+                            std::cout << i << ' ' << it.first << ' ' << it.second << std::endl;
+                        }
+                    }
+                } else {
+                    for (unsigned i = 0; i < len; i++) {
+                        for (auto it : G[i]) {
+                            std::cout << i << ' ' << it.first << std::endl;
+                        }
+                    }
+                }
+            }
+        }
+
+    private:
+        std::vector<std::vector<std::pair<int, valType>>> G;
+        std::vector<int> mapping;
+        std::vector<std::pair<int, valType>> Empty_Vector;
+        int cntEdge = 0, cntNode = 0;
+        bool hasValue = false;
+        valType valFrom = 0, valTo = 10000; // If hasValue is true, this option will be enabled.
+        bool isShuffle = false;
+        // Part 1: generate rand edge
+        void randedge(int V);
+        // Part 2:generate functions without arguments
+        void emptyGraph() { }
+        void completeGraph()
+        {
+            for (int i = 1; i < cntNode; i++) {
+                for (int j = i + 1; j <= cntNode; j++) {
+                    if (hasValue) {
+                        G[i].push_back(std::make_pair(j, Rand(valFrom, valTo)));
+                    } else {
+                        G[i].push_back(std::make_pair(j, 1));
+                    }
+                    cntEdge++;
+                }
+            }
+        }
+        void tourGraph()
+        {
+        }
+        void cycleGraph()
+        {
+            for (int i = 1; i < cntNode; i++) {
+                G[i].push_back(std::make_pair(i + 1, Rand(valFrom, valTo)));
+                cntEdge++;
+            }
+            cntEdge++;
+            G[cntNode].push_back(std::make_pair(1, Rand(valFrom, valTo)));
+        }
+        void starGraph()
+        {
+            for (int i = 2; i <= cntNode; i++) {
+                G[1].push_back(std::make_pair(i, Rand(valFrom, valTo)));
+                cntEdge++;
+            }
+        }
+        void wheelGraph()
+        {
+            for (int i = 2; i <= cntNode; i++) {
+                G[1].push_back(std::make_pair(i, Rand(valFrom, valTo)));
+                cntEdge++;
+            }
+            for (int i = 2; i < cntNode; i++) {
+                G[i].push_back(std::make_pair(i + 1, Rand(valFrom, valTo)));
+                cntEdge++;
+            }
+            cntEdge++;
+            G[cntNode].push_back(std::make_pair(2, Rand(valFrom, valTo)));
+        }
+        void chainGraph()
+        {
+            for (int i = 1; i < cntNode; i++) {
+                G[i].push_back(std::make_pair(i + 1, Rand(valFrom, valTo)));
+                cntEdge++;
+            }
+        }
+        // Part 3:generate functions with arguments
+        void pseudoGraph(std::initializer_list<long long> Arguments);
+        void cactusGraph(std::initializer_list<long long> Arguments);
+        void desertGraph(std::initializer_list<long long> Arguments);
+        void bipartiteCompleteGraph(std::initializer_list<long long> Arguments);
+        void gridGraph(std::initializer_list<long long> Arguments);
+        void normalGraph(Rules rules, std::initializer_list<long long> Arguments);
+        void forest(std::initializer_list<long long> Arguments);
+
+    public:
+        void randgraph(Rules rules)
+        {
+            if (rules.size() > 1) {
+                throw std::invalid_argument("Too many arguments!");
+            }
+            if (rules[0] == "Complete") {
+                completeGraph();
+            } else if (rules[0] == "Empty") {
+                emptyGraph();
+            } else if (rules[0] == "Tour") {
+                tourGraph();
+            } else if (rules[0] == "Cycle") {
+                cycleGraph();
+            } else if (rules[0] == "Star") {
+                starGraph();
+            } else if (rules[0] == "Wheel") {
+                wheelGraph();
+            } else if (rules[0] == "Chain") {
+                chainGraph();
+            } else {
+                throw std::invalid_argument("Invalid argument:" + rules[0]);
+            }
+        }
+        void randgraph(const Rules& rules, std::initializer_list<long long> Arguments)
+        {
+        }
+    };
+}
+}
+#endif

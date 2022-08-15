@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-
+#include <algorithm>
+#include <iostream>
+#include <string>
 using namespace std;
 
 // -mi=(make_input_file) -mo=(make_output_file) -out=(data_name) -from=(number_from) -to=(number to)

@@ -13,7 +13,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
 # Show message
-message("cdg2.0dev-A data generator based on C++")
+message("cdg2.0dev -- A data generator based on C++")
 if(${CMAKE_BUILD_TYPE} STREQUAL DEBUG)
     message("Optional:-fno-asm -std=c++11 -Wall -stdlib=libstdc++ -g -Og, Type:Debug")
 else(${CMAKE_BUILD_TYPE} STREQUAL RELEASE)
@@ -25,8 +25,8 @@ add_subdirectory(src)
 # Install options
 
 # Library
-install(TARGETS ext_random basic_lib undigraph
-        ARCHIVE DESTINATION lib)
+#install(TARGETS 
+#        ARCHIVE DESTINATION lib)
 
 # Header files
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
@@ -36,5 +36,4 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #        DESTINATION include)
 
-add_executable(test test/test.cpp)
-target_link_libraries(test ext_random basic_lib undigraph)
+add_executable(test test/test1.cpp)

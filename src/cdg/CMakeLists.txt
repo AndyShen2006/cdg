@@ -1,1 +1,1 @@
-add_executable(quickmakedata quickmakedata.cpp)
+#add_subdirectory(cdg-cli)
