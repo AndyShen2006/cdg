@@ -1,3 +1,17 @@
+// Undigraph library: For generating undigraph data
+// This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
+// Copyright (C) 2022 Andy Shen
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "../ext_random.hpp"
 #include "../information.hpp"
 
@@ -13,7 +27,7 @@ namespace Graph {
     public:
         typedef val_type valType;
         randRule Rand;
-        explicit Undigraph(const int& n)
+        explicit Undigraph(const int&& n)
         {
             cntNode = n;
             for (int i = 0; i <= n; i++) {
@@ -24,7 +38,7 @@ namespace Graph {
             }
             std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
         }
-        Undigraph(const int& n, const bool& is_shuffle)
+        Undigraph(const int&& n, const bool&& is_shuffle)
         {
             cntNode = n;
             isShuffle = is_shuffle;
@@ -36,7 +50,7 @@ namespace Graph {
             }
             std::shuffle(mapping.begin() + 1, mapping.end(), rand_eng);
         }
-        Undigraph(const int& n, const bool& is_shuffle, const valType& vf, const valType& vt)
+        Undigraph(const int&& n, const bool&& is_shuffle, const valType&& vf, const valType&& vt)
         {
             hasValue = true;
             cntNode = n;
@@ -92,7 +106,7 @@ namespace Graph {
         std::vector<std::pair<int, valType>> Empty_Vector;
         int cntEdge = 0, cntNode = 0;
         bool hasValue = false;
-        valType valFrom = 0, valTo = 10000; // If hasValue is true, this option will be enabled.
+        valType valFrom, valTo; // If hasValue is true, this option will be enabled.
         bool isShuffle = false;
         // Part 1: generate rand edge
         void randedge(int V);
@@ -160,7 +174,7 @@ namespace Graph {
         void forest(std::initializer_list<long long> Arguments);
 
     public:
-        void randgraph(Rules rules)
+        void randgraph(Rules&& rules)
         {
             if (rules.size() > 1) {
                 throw std::invalid_argument("Too many arguments!");
@@ -183,7 +197,7 @@ namespace Graph {
                 throw std::invalid_argument("Invalid argument:" + rules[0]);
             }
         }
-        void randgraph(const Rules& rules, std::initializer_list<long long> Arguments)
+        void randgraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
         {
         }
     };

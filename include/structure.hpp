@@ -1,3 +1,17 @@
+// Structure library: Some data structures for data generation
+// This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
+// Copyright (C) 2022 Andy Shen
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "information.hpp"
 #include <iostream>
 #include <string>
@@ -106,6 +120,7 @@ private:
 // Union Find Set
 class UFS {
 public:
+    UFS() = default;
     explicit UFS(int n)
     {
         size = n;
@@ -114,11 +129,11 @@ public:
             par.emplace_back(i);
         }
     }
-    void init(int n)
+    void init(unsigned n)
     {
         size = n;
         par.emplace_back(0);
-        for (int i = 1; i <= n; i++) {
+        for (unsigned i = 1; i <= n; i++) {
             par.emplace_back(i);
         }
     }
@@ -139,7 +154,7 @@ public:
 
 private:
     std::vector<int> par;
-    int size;
+    unsigned size {};
 };
 }
 // Functions

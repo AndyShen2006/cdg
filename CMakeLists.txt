@@ -6,14 +6,14 @@ project(cdg)
 set(CMAKE_C_COMPILER "gcc")
 set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_BUILD_TYPE DEBUG)
-set(CMAKE_CXX_FLAGS "-fno-asm -std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS "-fno-asm -std=c++14 -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
 # Show message
-message("cdg2.0dev -- A data generator based on C++")
+message("cdg2.0release -- A data generator based on C++")
 if(${CMAKE_BUILD_TYPE} STREQUAL DEBUG)
     message("Optional:-fno-asm -std=c++11 -Wall -stdlib=libstdc++ -g -Og, Type:Debug")
 else(${CMAKE_BUILD_TYPE} STREQUAL RELEASE)
@@ -36,4 +36,5 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 #        DESTINATION include)
 
-add_executable(test test/test1.cpp)
+add_executable(treeTest test/treeTest.cpp)
+add_executable(digraphTest test/digraphTest.cpp)
