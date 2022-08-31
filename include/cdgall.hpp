@@ -1,4 +1,4 @@
-// cdgall library: includes all cdg libraries
+// cdgall header: includes all cdg libraries
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
 // Copyright (C) 2022 Andy Shen
 //

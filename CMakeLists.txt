@@ -33,8 +33,8 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
         DESTINATION include)
 
 # Executable files
-#install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-#        DESTINATION include)
+install(TARGETS cdg
+        RUNTIME DESTINATION bin)
 
 add_executable(treeTest test/treeTest.cpp)
 add_executable(digraphTest test/digraphTest.cpp)

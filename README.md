@@ -8,7 +8,7 @@ An open-source cross-platform data generator
 
 安装方法：
 
-先确认您电脑上已安装CMake(不低于3.16.3)，GNU C++ Compiler 5.0及以上（或者其他支持C++11的编译器），Ninja, git
+先确认您电脑的系统是Windows或Linux，且已安装CMake(不低于3.16.3)，GNU C++ Compiler 6.1及以上，git
 
 执行
 
@@ -24,10 +24,9 @@ cd cdg/
 mkdir build/
 cd build/
 cmake ..
-ninja
-sudo ninja install
+make
+sudo make install
 ```
-编译的时候请使用-L链接上您需要使用的库（比如ext_random就要在编译选项中加上-lext_random）
 
 Copyright (C) 2022  Andy Shen
 
