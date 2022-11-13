@@ -39,6 +39,7 @@ namespace Graph {
         }
         Tree(const unsigned&& n, const unsigned&& r)
         {
+            root = r;
             cntNode = n;
             ufs.init(n);
             for (unsigned i = 0; i <= n; i++) {
@@ -66,6 +67,7 @@ namespace Graph {
         }
         Tree(const unsigned&& n, const unsigned&& r, const valType&& vf, const valType&& vt)
         {
+            root = r;
             cntNode = n;
             ufs.init(n);
             for (unsigned i = 0; i <= n; i++) {

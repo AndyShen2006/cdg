@@ -171,7 +171,7 @@ namespace Graph {
         void normalGraph(Rules rules, std::initializer_list<long long> Arguments);
 
     public:
-        void randgraph(Rules&& rules)
+        void genGraph(Rules&& rules)
         {
             if (rules.size() > 1) {
                 throw std::invalid_argument("Too many arguments!");
@@ -194,7 +194,7 @@ namespace Graph {
                 throw std::invalid_argument("Invalid argument:" + rules[0]);
             }
         }
-        void randgraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
+        void genGraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
         {
         }
     };
