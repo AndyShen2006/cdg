@@ -21,5 +21,5 @@
 #define LAST_EDIT_DATE "Unspecified"
 #define LAST_BUILD_DATE "Unspecified"
 #define CMAKE_VERSION_REQUIRED "CMake version 3.16.3"
-#define BUILD_ENVIRONMENT "Archlinux, GNU C++ Compiler 12.1.1, CMake 3.16.3, Ninja 1.11.0"
+#define BUILD_ENVIRONMENT "Archlinux, GNU C++ Compiler 12.2.0, CMake 3.24.2, Ninja 1.11.1"
 #endif

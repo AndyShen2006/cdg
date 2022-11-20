@@ -111,7 +111,11 @@ namespace Graph {
         // Part 1: generate rand edge
         void randedge(int V);
         // Part 2:generate functions without arguments
-        void emptyGraph() { }
+        void emptyGraph()
+        {
+            // There's no need to write anything
+            ;
+        }
         void completeGraph()
         {
             for (int i = 1; i < cntNode; i++) {
@@ -127,6 +131,7 @@ namespace Graph {
         }
         void tourGraph()
         {
+            // TODO:Tournament Graph
         }
         void cycleGraph()
         {
@@ -174,7 +179,7 @@ namespace Graph {
         void forest(std::initializer_list<long long> Arguments);
 
     public:
-        void randgraph(Rules&& rules)
+        void genGraph(Rules&& rules)
         {
             if (rules.size() > 1) {
                 throw std::invalid_argument("Too many arguments!");
@@ -197,7 +202,7 @@ namespace Graph {
                 throw std::invalid_argument("Invalid argument:" + rules[0]);
             }
         }
-        void randgraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
+        void genGraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
         {
         }
     };
