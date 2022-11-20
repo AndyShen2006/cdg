@@ -1,4 +1,4 @@
-// Extension random library: Includes some basic random generating functions.
+// Extension random header: Includes some basic random generating functions.
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
 // Copyright (C) 2022 Andy Shen
 //
@@ -19,8 +19,8 @@
 #ifndef _EXT_RANDOM_H
 #define _EXT_RANDOM_H
 //  Initialize
-static std::random_device rand_dev; // NOLINT
-static std::mt19937_64 rand_eng(rand_dev()); // NOLINT
+std::random_device rand_dev; // NOLINT
+std::mt19937_64 rand_eng(rand_dev()); // NOLINT
 
 // Functions
 //  Generate random integer in interval [start,end]

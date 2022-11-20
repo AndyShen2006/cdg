@@ -1,4 +1,4 @@
-// Digraph library: For generating digraph data
+// Digraph header: For generating digraph data
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
 // Copyright (C) 2022 Andy Shen
 //
@@ -171,7 +171,7 @@ namespace Graph {
         void normalGraph(Rules rules, std::initializer_list<long long> Arguments);
 
     public:
-        void randgraph(Rules&& rules)
+        void genGraph(Rules&& rules)
         {
             if (rules.size() > 1) {
                 throw std::invalid_argument("Too many arguments!");
@@ -194,7 +194,7 @@ namespace Graph {
                 throw std::invalid_argument("Invalid argument:" + rules[0]);
             }
         }
-        void randgraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
+        void genGraph(const Rules&& rules, std::initializer_list<long long>&& Arguments)
         {
         }
     };

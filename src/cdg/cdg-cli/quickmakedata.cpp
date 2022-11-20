@@ -5,7 +5,7 @@
 using namespace std;
 
 // -mi=(make_input_file) -mo=(make_output_file) -out=(data_name) -from=(number_from) -to=(number to)
-string itos(int i)
+string iToS(int i)
 {
     string s;
     while (i > 0) {
@@ -17,12 +17,12 @@ string itos(int i)
 }
 void execute(const char* a1, const char* a2, const char* a3, const char* a4, const char* a5)
 {
-    string strfrom;
+    string strFrom;
     for (int i = 6; a4[i]; i++) {
-        strfrom.push_back(a4[i]);
+        strFrom.push_back(a4[i]);
     }
-    int from = stoi(strfrom);
-    // cout << atoi(strfrom.c_str()) << endl;
+    int from = stoi(strFrom);
+    // cout << atoi(strFrom.c_str()) << endl;
     string strTo;
     for (int i = 4; a5[i]; i++) {
         strTo.push_back(a5[i]);
@@ -39,18 +39,18 @@ void execute(const char* a1, const char* a2, const char* a3, const char* a4, con
         output.push_back(a2[i]);
     }
     // cout << output << endl;
-    string dataout;
+    string dataOut;
     for (int i = 5; a3[i]; i++) {
-        dataout.push_back(a3[i]);
+        dataOut.push_back(a3[i]);
     }
-    // cout << dataout << endl;
+    // cout << dataOut << endl;
     string exe;
     for (int i = from; i <= to; i++) {
 
-        exe = input + " > " + dataout + itos(i) + ".in"; // NOLINT
+        exe = input + " > " + dataOut + iToS(i) + ".in"; // NOLINT
         system(exe.c_str());
         cout << "execute: " << exe << endl;
-        exe = output + " < " + dataout + itos(i) + ".in" + " > " + dataout + itos(i) + ".out"; // NOLINT
+        exe = output + " < " + dataOut + iToS(i) + ".in" + " > " + dataOut + iToS(i) + ".out"; // NOLINT
         system(exe.c_str());
         cout << "execute: " << exe << endl;
     }

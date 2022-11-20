@@ -1,1 +1,1 @@
-#add_subdirectory(cdg-cli)
+add_subdirectory(cdg-cli)

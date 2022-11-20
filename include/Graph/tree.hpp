@@ -1,4 +1,4 @@
-// Tree library: For generating tree data
+// Tree header: For generating tree data
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
 // Copyright (C) 2022 Andy Shen
 //
@@ -39,6 +39,7 @@ namespace Graph {
         }
         Tree(const unsigned&& n, const unsigned&& r)
         {
+            root = r;
             cntNode = n;
             ufs.init(n);
             for (unsigned i = 0; i <= n; i++) {
@@ -66,6 +67,7 @@ namespace Graph {
         }
         Tree(const unsigned&& n, const unsigned&& r, const valType&& vf, const valType&& vt)
         {
+            root = r;
             cntNode = n;
             ufs.init(n);
             for (unsigned i = 0; i <= n; i++) {

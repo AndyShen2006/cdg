@@ -1,4 +1,4 @@
-// Information library: Provide some basic informations of cdg library
+// Information header: Provide some basic informations of cdg library
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
 // Copyright (C) 2022 Andy Shen
 //
@@ -14,12 +14,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef _INFO_H
 #define _INFO_H
-#define VERSION "2.0-release"
+#define VERSION "2.1-dev"
 #define CPP_STANDARD "ISO C++ 14"
 #define AUTHOR "AndyShen2006"
 #define AUTHOR_EMAIL "andyshen2006@foxmail.com"
-#define LAST_EDIT_DATE "Aug.15th.2022"
-#define LAST_BUILD_DATE "Aug.15th.2022"
+#define LAST_EDIT_DATE "Unspecified"
+#define LAST_BUILD_DATE "Unspecified"
 #define CMAKE_VERSION_REQUIRED "CMake version 3.16.3"
-#define BUILD_ENVIRONMENT "Archlinux, GNU C++ Compiler 12.1.1, CMake 3.16.3, Ninja 1.11.0"
+#define BUILD_ENVIRONMENT "Archlinux, GNU C++ Compiler 12.2.0, CMake 3.24.2, Ninja 1.11.1"
 #endif
