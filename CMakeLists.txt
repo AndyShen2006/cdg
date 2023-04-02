@@ -29,7 +29,7 @@ add_subdirectory(src)
 #        ARCHIVE DESTINATION lib)
 
 # Header files
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/cdg
         DESTINATION include)
 
 # Executable files

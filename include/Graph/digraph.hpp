@@ -1,6 +1,6 @@
 // Digraph header: For generating digraph data
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
-// Copyright (C) 2022 Andy Shen
+// Copyright (C) 2022-2023 Andy Shen
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

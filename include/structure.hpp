@@ -1,6 +1,6 @@
 // Structure header: Some data structures for data generation
 // This file is a part of cdg library, which provides some useful classes and functions in order to generate data more efficiently.
-// Copyright (C) 2022 Andy Shen
+// Copyright (C) 2022-2023 Andy Shen
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,89 +20,121 @@
 #define _BASIC_LIB_H
 namespace cdg {
 // Classes
-class Rules {
-public:
-    // Construct functions
-    Rules() = default;
-    Rules(const Rules& r)
-    {
-        rules = r.rules;
+namespace Types {
+    class Integral {
     };
-    explicit Rules(const std::string& r)
-    {
-        std::string tempstr;
-        for (auto it : r) {
-            if (it == ' ') {
-                rules.emplace_back(tempstr);
-                tempstr.clear();
-                continue;
-            } else {
-                tempstr.push_back(it);
-            }
-        }
-        // Push last string
-        if (!tempstr.empty()) {
-            rules.emplace_back(tempstr);
-            tempstr.clear();
-        }
-    }
-    //  Basic informations
-    unsigned int size() const
-    {
-        return rules.size();
-    };
-    unsigned int length() const
-    {
-        return rules.size();
-    };
-    // Display function
-    void showRules()
-    {
-        for (const auto& it : rules) {
-            std::cout << it << std::endl;
-        }
-    }
-    // Part of iterator
-    typedef std::vector<std::string>::iterator iterator;
-    iterator begin()
-    {
-        return rules.begin();
-    }
-    iterator end()
-    {
-        return rules.end();
-    }
-    // Reload symbols
-    std::string& operator[](std::size_t n)
-    {
-        return rules[n];
-    };
-    std::vector<std::string> operator+(const Rules& rhs)
-    {
-        std::vector<std::string> temp;
-        for (const auto& it : this->rules) {
-            temp.emplace_back(it);
-        }
-        for (const auto& it : rhs.rules) {
-            temp.emplace_back(it);
-        }
-        return temp;
-    };
-    // Generate functions
-    void generate(const Rules& r)
-    {
-        Rules temp(r);
-        rules = temp.rules;
-    }
-    void generate(const std::string& r)
-    {
-        Rules temp(r);
-        rules = temp.rules;
-    }
+}
+namespace Rules {
+    /*
+        Let's think about an argument:
+        It often includes a Type(Usually String), which denote the type of this argument
+        And also includes some specific details(Usually Integer).
+    */
+    class Argument {
+    private:
+        std::string Type;
+        std::vector<long long> Details;
 
-private:
-    std::vector<std::string> rules;
-};
+    public:
+        Argument(const std::string& type, const std::initializer_list<long long>& details)
+        {
+            Type = type;
+            Details = details;
+        }
+        bool operator<(const Argument& rhs) const
+        {
+            return this->Type == rhs.Type ? throw std::invalid_argument("Multiple Arguments") : this->Type < rhs.Type;
+        }
+    };
+    class Rules {
+    public:
+    private:
+        std::vector<Argument> rules;
+    };
+}
+// class Rules {
+// public:
+//     // Construct functions
+//     Rules() = default;
+//     Rules(const Rules& r)
+//     {
+//         rules = r.rules;
+//     };
+//     explicit Rules(const std::string& r)
+//     {
+//         std::string tempstr;
+//         for (auto it : r) {
+//             if (it == ' ') {
+//                 rules.emplace_back(tempstr);
+//                 tempstr.clear();
+//                 continue;
+//             } else {
+//                 tempstr.push_back(it);
+//             }
+//         }
+//         // Push last string
+//         if (!tempstr.empty()) {
+//             rules.emplace_back(tempstr);
+//             tempstr.clear();
+//         }
+//     }
+//     //  Basic informations
+//     unsigned int size() const
+//     {
+//         return rules.size();
+//     };
+//     unsigned int length() const
+//     {
+//         return rules.size();
+//     };
+//     // Display function
+//     void showRules()
+//     {
+//         for (const auto& it : rules) {
+//             std::cout << it << std::endl;
+//         }
+//     }
+//     // Part of iterator
+//     typedef std::vector<std::string>::iterator iterator;
+//     iterator begin()
+//     {
+//         return rules.begin();
+//     }
+//     iterator end()
+//     {
+//         return rules.end();
+//     }
+//     // Reload symbols
+//     std::string& operator[](std::size_t n)
+//     {
+//         return rules[n];
+//     };
+//     std::vector<std::string> operator+(const Rules& rhs)
+//     {
+//         std::vector<std::string> temp;
+//         for (const auto& it : this->rules) {
+//             temp.emplace_back(it);
+//         }
+//         for (const auto& it : rhs.rules) {
+//             temp.emplace_back(it);
+//         }
+//         return temp;
+//     };
+//     // Generate functions
+//     void generate(const Rules& r)
+//     {
+//         Rules temp(r);
+//         rules = temp.rules;
+//     }
+//     void generate(const std::string& r)
+//     {
+//         Rules temp(r);
+//         rules = temp.rules;
+//     }
+
+// private:
+//     std::vector<std::string> rules;
+// };
 // Class Interval（Noting completed）
 template <typename T>
 class Interval {
