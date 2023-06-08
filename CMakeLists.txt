@@ -35,6 +35,3 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/cdg
 # Executable files
 install(TARGETS cdg
         RUNTIME DESTINATION bin)
-
-add_executable(treeTest test/treeTest.cpp)
-add_executable(digraphTest test/digraphTest.cpp)
